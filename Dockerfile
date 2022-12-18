@@ -7,4 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+USER nobody
+
 CMD [ "python", "./fireplace-controller.py" ]
