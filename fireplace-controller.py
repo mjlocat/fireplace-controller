@@ -8,6 +8,7 @@ MQTT_HOST = os.environ.get("MQTT_HOST")
 TEMP_THRESHOLD = float(os.environ.get("TEMP_THRESHOLD"))
 
 def on_connect(client, userdata, flags, rc):
+  print(F'Connected to {MQTT_HOST}')
   client.subscribe([("house/temp/0", 0)])
 
 
@@ -23,6 +24,7 @@ def on_temperature(client, userdata, message):
 
 client = mqtt.Client(client_id="fireplace-controller")
 client.on_connect = on_connect
+print(F'Connecting to {MQTT_HOST}')
 client.connect(MQTT_HOST)
 client.message_callback_add("house/temp/0", on_temperature)
 client.loop_forever()
