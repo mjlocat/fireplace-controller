@@ -14,6 +14,9 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_temperature(client, userdata, message):
+  global current_state
+  global last_state_switch
+  
   temperature = float(message.payload)
   print(F'Temperature: {temperature}')
   new_state = "on"
